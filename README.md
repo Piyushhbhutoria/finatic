@@ -1,0 +1,2 @@
+# finatic
+A financial Chatbot.
