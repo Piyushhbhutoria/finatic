@@ -39,6 +39,7 @@ target 'finatic' do
   pod 'RNScreens', :path => '../node_modules/react-native-screens'
 
   pod 'RNFBAuth', :path => '../node_modules/@react-native-firebase/auth'
+  pod 'RNFBAnalytics', :path => '../node_modules/@react-native-firebase/analytics'
 
   target 'finaticTests' do
     inherit! :search_paths
