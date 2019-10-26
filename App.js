@@ -3,16 +3,22 @@ import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import HomeScreen from './screens/HomeScreen';
+import LoadingScreem from './screens/LoadingScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 
+
+
 const AppNavigator = createStackNavigator(
   {
-    Login: LoginScreen,
+    Loading: LoadingScreem,
     Register: RegisterScreen,
+    Login: LoginScreen,
+    Home: HomeScreen,
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'Loading',
   }
 );
 

@@ -1,19 +1,70 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
-import { Text, View } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
+import { firebase } from '@react-native-firebase/auth'
+
 
 class RegisterScreen extends React.Component {
+    state = { email: '', password: '', errorMessage: null }
+
+    handleSignUp = () => {
+        firebase
+            .auth()
+            .createUserWithEmailAndPassword(this.state.email, this.state.password)
+            .then(() => this.props.navigation.navigate('Home'))
+            .catch(error => this.setState({ errorMessage: error.message }))
+    }
+
     render() {
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text>Register Screen</Text>
+            <View style={styles.container}>
+                <Text>Sign Up</Text>
+                {this.state.errorMessage &&
+                    <Text style={{ color: 'red' }}>
+                        {this.state.errorMessage}
+                    </Text>}
+                <TextInput
+                    placeholder="Email"
+                    autoCapitalize="none"
+                    style={styles.textInput}
+                    onChangeText={email => this.setState({ email })}
+                    value={this.state.email}
+                />
+                <TextInput
+                    secureTextEntry
+                    placeholder="Password"
+                    autoCapitalize="none"
+                    style={styles.textInput}
+                    onChangeText={password => this.setState({ password })}
+                    value={this.state.password}
+                />
+                <Button title="Sign Up" onPress={this.handleSignUp} />
+                <Button
+                    title="Already have an account? Login"
+                    onPress={() => this.props.navigation.navigate('Login')}
+                />
             </View>
-        );
+        )
     }
 }
 
 RegisterScreen.navigationOptions = {
     header: null,
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    textInput: {
+        height: 40,
+        width: '90%',
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginTop: 8,
+    },
+})
 
 export default RegisterScreen;
