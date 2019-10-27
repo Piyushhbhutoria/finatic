@@ -41,6 +41,8 @@ target 'finatic' do
   pod 'RNFBAuth', :path => '../node_modules/@react-native-firebase/auth'
   pod 'RNFBAnalytics', :path => '../node_modules/@react-native-firebase/analytics'
 
+  pod 'RNDateTimePicker', :path => '../node_modules/@react-native-community/datetimepicker'
+
   target 'finaticTests' do
     inherit! :search_paths
     # Pods for testing
